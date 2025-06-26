@@ -96,4 +96,21 @@ guiTypes = {
 			format = center
 		}
 	}
+
+	containerWindowType = {
+		name = "st_state_entry"
+		size = {
+			width = 330
+			height = 16
+		}
+		orientation = UPPER_LEFT
+		origo = upper_left
+
+		buttonType = {
+			name = "st_state_entry_button"
+			font = "hoi_18mbs"
+			text = "[ST_STATE_ENTRY_TEXT]"
+			spriteType = ""
+		}
+	}
 }
