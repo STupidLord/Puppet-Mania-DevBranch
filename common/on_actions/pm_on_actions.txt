@@ -1,0 +1,22 @@
+on_actions = {
+	on_state_control_changed = {
+		effect = {
+			if = {
+				limit = {
+					FROM = {
+						is_in_array = {
+							array = st_transfer_states_ar
+							value = FROM.FROM.id
+						}
+					}
+				}
+				FROM = {
+					remove_from_array = {
+						array = st_transfer_states_ar
+						value = FROM.FROM.id
+					}
+				}
+			}
+		}
+	}
+}

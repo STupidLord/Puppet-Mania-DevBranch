@@ -1,0 +1,14 @@
+﻿l_english:
+ STATE_MARKED: "Unmark"
+ STATE_UNMARKED: "Mark"
+ PM_PT_PDX_TOOLTIP: "Puppet Tool"
+ PM_PT_PDX_TOOLTIP_DELAY: "§LAllows you to setup puppet states outside of peace deals, even if the target country already exists.§!\n\n§RYou must be clicked on a state for the tool to show up!§! "
+ PM_ST_PDX_TOOLTIP: "State Transfer Tool"
+ PM_ST_PDX_TOOLTIP_DELAY: "While §Gindipendent§!: §LAllows you to transfer states between yourself and subjects. You may also give land to any other country you are not at war with.§!\n\nWhile §Rsubject§!: §LAllows you to transfer your own states to your overlord or other subjects of your overlord.§!\n\nAutomatically clears marked states when closed.\n\n§RYou must be clicked on a state for the tool to show up!§!"
+ PM_ST_CORE_TOOLTIP: "Transfer Cores"
+ PM_ST_CORE_TOOLTIP_DELAY: "§LLose cores on transfered states, coring them for the§! §Htarget§! §Lcountry.§!"
+ TARGET_SELECTED: "[?ROOT.st_target_var.GetNameDefCap]" # This is the broken one
+ NO_TARGET_SELECTED: "No Target Selected"
+ ST_STATE_ENTRY_OWNED: "[This.GetName]"
+ ST_STATE_ENTRY_PUPPET: "[This.GetName] (§L[This.Owner.GetNonIdeologyName]§!)"
+ ST_TRANSFER_BUTTON_TT: "Transfer marked states to §H[st_target_var.GetNameDef]§!."

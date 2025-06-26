@@ -1,0 +1,502 @@
+# Puppet Mania - Puppet Tool
+
+scripted_gui = {
+	st_button = {
+		window_name = "st_button_container"
+		parent_window_token = top_bar
+
+		context_type = player_context
+
+		visible = {
+			ROOT = {
+				is_ai = no
+			}
+		}
+
+		effects = {
+			st_button_open_click = {
+				set_variable = { show_pm_st = 1 }
+			}
+			st_button_close_click = {
+				clear_variable = show_pm_st
+				clear_variable = st_target_var
+				every_state = {
+					limit = {
+						ROOT = {
+							is_in_array = {
+								array = st_transfer_states_ar
+								value = PREV.id
+							}
+						}
+					}
+					ROOT = {
+						remove_from_array = {
+							array = st_transfer_states_ar
+							value = PREV.id	
+						}
+					}
+				}
+			}
+		}
+
+		triggers = {
+			st_button_open_visible = {
+				NOT = {
+					has_variable = show_pm_st
+				}
+			}
+			st_button_close_visible = {
+				has_variable = show_pm_st
+			}
+			transfer_off_visible = {
+				NOT = {
+					has_variable = show_pm_st
+				}
+			}
+			transfer_on_visible = {
+				has_variable = show_pm_st
+			}
+		}
+	}
+
+	st_logic = {
+		context_type = selected_state_context
+
+		window_name = "st_main_container"
+
+		visible = {
+			ROOT = {
+				is_ai = no
+				has_variable = show_pm_st
+			}
+			FROM.FROM = {
+				OR = {
+					AND = {
+						owner = {
+							OR = {
+								tag = ROOT
+								is_subject_of = ROOT
+							}
+						}
+						is_fully_controlled_by = owner
+					}
+					owner = {
+						NOT = {
+							has_war_with = ROOT
+						}
+					}
+				}
+			}
+		}
+
+		effects = {
+			st_state_marker_click = {
+				FROM.FROM = {
+					ROOT = {
+						add_to_array = {
+							array = st_transfer_states_ar
+							value = PREV.id
+						}
+						log = "Core swapping is: [?st_core_swapping]"
+					}
+				}
+			}
+			st_state_unmarker_click = {
+				FROM.FROM = {
+					ROOT = {
+						remove_from_array = {
+							array = st_transfer_states_ar
+							value = PREV.id
+						}
+					}
+				}
+			}
+			st_target_marker_click = {
+				FROM.FROM = {
+					owner = {
+						ROOT = {
+							set_variable = { st_target_var = PREV.id }
+						}
+					}
+				}
+			}
+			st_target_unmarker_click = {
+				ROOT = {
+					clear_variable = st_target_var
+				}
+			}
+			st_transfer_button_click = {
+				every_state = {
+					limit = {
+						owner = {
+							OR = {
+								tag = ROOT
+								is_subject_of = ROOT
+							}
+						}
+						is_fully_controlled_by = owner
+						ROOT = {
+							is_in_array = {
+								array = st_transfer_states_ar
+								value = PREV.id
+							}
+						}
+					}
+					if = {
+						limit = {
+							ROOT = {
+								has_variable = st_core_swapping
+							}
+						}
+						add_core_of = ROOT.st_target_var
+						remove_core_of = ROOT
+					}
+					transfer_state_to = ROOT.st_target_var
+					ROOT = {
+						remove_from_array = {
+							array = st_transfer_states_ar
+							value = PREV.id
+						}
+					}
+				}
+			}
+			st_close_button_click = {
+				ROOT = {
+					clear_variable = show_pm_st
+					clear_variable = st_target_var
+				}
+				every_state = {
+					limit = {
+						owner = {
+							OR = {
+								tag = ROOT
+								is_subject_of = ROOT
+							}
+						}
+						is_fully_controlled_by = owner
+						ROOT = {
+							is_in_array = {
+								array = st_transfer_states_ar
+								value = PREV.id
+							}
+						}
+					}
+					ROOT = {
+						remove_from_array = {
+							array = st_transfer_states_ar
+							value = PREV.id	
+						}
+					}
+				}
+			}
+			st_core_swap_click = {
+				ROOT = {
+					set_variable = { st_core_swapping = 1 }
+				}
+				every_state = {
+					limit = {
+						OR = {
+							AND = {
+								is_core_of = ROOT
+								NOT = { is_fully_controlled_by = ROOT }
+							}
+							NOT = { is_core_of = ROOT }
+						}
+						ROOT = {
+							is_in_array = {	
+								array = st_transfer_states_ar
+								value = PREV.id
+							}
+						}
+					}
+					ROOT = {
+						remove_from_array = {	
+							array = st_transfer_states_ar
+							value = PREV.id
+						}
+					}
+				}
+			}
+			st_core_swapped_click = {
+				ROOT = {
+					clear_variable = st_core_swapping
+				}
+			}
+		}
+
+		triggers = {
+			st_state_marker_visible = {
+				OR = {
+					FROM.FROM = {
+						NOT = {
+							ROOT = {
+								is_in_array = {
+									array = st_transfer_states_ar
+									value = PREV.id
+								}
+							}
+						}
+						owner = {
+							OR = {
+								tag = ROOT
+								is_subject_of = ROOT
+							}
+						}
+						is_fully_controlled_by = owner
+					}
+					AND = {
+						ROOT = { has_variable = st_core_swapping }
+						FROM.FROM = {
+							NOT = {
+								ROOT = {
+									is_in_array = {
+										array = st_transfer_states_ar
+										value = PREV.id
+									}
+								}
+							}
+							is_core_of = ROOT
+							is_owned_and_controlled_by = ROOT
+						}
+					}
+				}
+			}
+			st_state_unmarker_visible = {
+				OR = {
+					FROM.FROM = {
+						ROOT = {
+							is_in_array = {
+								array = st_transfer_states_ar
+								value = PREV.id
+							}
+						}
+						owner = {
+							OR = {
+								tag = ROOT
+								is_subject_of = ROOT
+							}
+						}
+						is_fully_controlled_by = owner
+					}
+					AND = {
+						ROOT = { has_variable = st_core_swapping }
+						FROM.FROM = {
+							ROOT = {
+								is_in_array = {
+									array = st_transfer_states_ar
+									value = PREV.id
+								}
+							}
+							is_core_of = ROOT
+							is_owned_and_controlled_by = ROOT
+						}
+					}
+				}
+			}
+			st_state_marker_blocked_visible = {
+				OR = {
+					NOT = {
+						FROM.FROM = {
+							owner = {
+								OR = {
+									tag = ROOT
+									is_subject_of = ROOT
+								}
+							}
+						}
+					}
+					AND = {
+						ROOT = { has_variable = st_core_swapping }
+						NOT = {
+							FROM.FROM = {
+								is_core_of = ROOT
+								is_owned_and_controlled_by = ROOT
+							}
+						}
+					}
+				}
+			}
+			st_transfer_button_visible = {
+				ROOT = {
+					has_variable = st_target_var
+					NOT = {
+						var:st_target_var = {
+							has_war_with = PREV
+						}
+					}
+					OR = {
+						any_owned_state = {
+							is_fully_controlled_by = owner
+							ROOT = {
+								is_in_array = {
+									array = st_transfer_states_ar
+									value = PREV.id
+								}
+							}
+						}
+						any_country = {
+							any_owned_state = {
+								is_fully_controlled_by = owner
+								ROOT = {
+									is_in_array = {
+										array = st_transfer_states_ar
+										value = PREV.id
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			st_transfer_button_cant_visible = {
+				ROOT = {
+					OR = {
+						NOT = { has_variable = st_target_var }
+						var:st_target_var = {
+							has_war_with = PREV
+						}
+						NOT = {
+							OR = {
+								any_owned_state = {
+									is_fully_controlled_by = owner	
+									ROOT = {
+										is_in_array = {
+											array = st_transfer_states_ar
+											value = PREV.id
+										}
+									}
+								}
+								any_country = {
+									any_owned_state = {
+										is_fully_controlled_by = owner
+										ROOT = {
+											is_in_array = {
+												array = st_transfer_states_ar
+												value = PREV.id
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			st_target_marker_visible = {
+				NOT = {
+					FROM.FROM = {
+						is_owned_by = var:ROOT.st_target_var
+						owner = {
+							has_war_with = ROOT
+						}
+					}
+				}
+				if = {
+					limit = {
+						ROOT = {
+							is_subject = yes
+						}
+					}
+					FROM.FROM = {
+						owner = {
+							OR = {
+								ROOT = {
+									is_subject_of = PREV
+								}
+								is_subject_of = ROOT.overlord
+							}
+						}
+					}
+				}
+			}
+			st_target_unmarker_visible = {
+				FROM.FROM = {
+					is_owned_by = var:ROOT.st_target_var
+					owner = {
+						NOT = {
+							has_war_with = ROOT
+						}
+					}
+				}
+				if = {
+					limit = {
+						ROOT = {
+							is_subject = yes
+						}
+					}
+					FROM.FROM = {
+						owner = {
+							OR = {
+								ROOT = {
+									is_subject_of = PREV
+								}
+								is_subject_of = ROOT.overlord
+							}
+						}
+					}
+				}
+			}
+			st_target_marker_blocked_visible = {
+				OR = {
+					if = {
+						limit = {
+							ROOT = {
+								is_subject = yes
+							}
+						}
+						OR = {
+							FROM.FROM = {
+								owner = {
+									OR = {
+										NOT = {
+											ROOT = {
+												is_subject_of = PREV
+											}
+											is_subject_of = ROOT.overlord
+										}
+									}
+								}
+							}
+							FROM.FROM = {
+								owner = {
+									has_war_with = ROOT
+								}
+							}
+						}
+					}
+					else = {
+						FROM.FROM = {
+							owner = {
+								has_war_with = ROOT
+							}
+						}
+					}
+				}
+			}
+			st_core_swap_visible = {
+				ROOT = {
+					NOT = {
+						has_variable = st_core_swapping
+					}
+				}
+			}
+			st_core_swapped_visible = {
+				ROOT = {
+					has_variable = st_core_swapping
+				}
+			}
+		}
+
+		dynamic_lists = {
+			st_state_gridbox = {
+				array = ROOT.st_transfer_states_ar
+
+				value = state_id
+
+				change_scope = yes
+
+				entry_container = "st_state_entry"
+			}
+		}
+	}
+}

@@ -1,0 +1,292 @@
+guiTypes = {
+	containerWindowType = {
+		name = "st_button_container"
+		position = { x = -620 y = 6 }
+		orientation = UPPER_RIGHT
+
+		buttonType = {
+			name = "st_button_open"
+			spriteType = "GFX_generic_box_80"
+			position = { x = 0 y = 0 }
+			pdx_tooltip = "PM_ST_PDX_TOOLTIP"
+			pdx_tooltip_delayed = "PM_ST_PDX_TOOLTIP_DELAY"
+			clicksound = click_expand
+			oversound = ui_menu_over
+		}
+
+		buttonType = {
+			name = "st_button_close"
+			spriteType = "GFX_generic_box_80"
+			position = { x = 0 y = 0 }
+			pdx_tooltip = "PM_ST_PDX_TOOLTIP"
+			pdx_tooltip_delayed = "PM_ST_PDX_TOOLTIP_DELAY"
+			clicksound = click_close
+			oversound = ui_menu_over
+		}
+
+		instantTextBoxType = {
+			name = "title"
+			text = "Transfer"
+			font = "hoi_18mbs"
+			position = { x = 11 y = 3 }
+			format = left
+			orientation = CENTER_DOWN
+			alwaystransparent = yes
+		}
+
+		iconType = {
+			name = "transfer_on"
+			frame = 2
+			quadTextureSprite = GFX_generic_checkbox
+			position = { x = 80 y = -3 }
+		}
+		iconType = {
+			name = "transfer_off"
+			frame = 1
+			position = { x = 80 y = -3 }
+			quadTextureSprite = GFX_generic_checkbox
+		}
+	}
+
+	containerWindowType = {
+		name = "st_main_container"
+		size = { width = 330 height = 400 }
+		position = { x = 0 y = 0 }
+		orientation = CENTER
+		origo = center
+
+		moveable = yes
+
+		background = {
+			name = "Background"
+			quadTextureSprite = "GFX_tiled_window_thin_border2"
+		}
+
+		instantTextBoxType = {
+			name = "title"
+			text = "State Transfer Tool"
+			font = "hoi_24header"
+			#position = { x = -20%% y = -3%% }
+			maxWidth = 300
+			position = { x = 46 y = 10 }
+			orientation = UPPER_LEFT
+		}
+
+		buttonType = {
+			name = "st_state_marker"
+			quadTextureSprite  = "GFX_sort_button_202x29_3_frames"
+			position = { x = 118 y = 134 }
+			frame = 1
+			orientation = UPPER_LEFT
+			clicksound = click_checkbox
+			oversound = ui_menu_over
+			shortcut = "ctrl+f"
+		}
+
+		buttonType = {
+			name = "st_state_unmarker"
+			quadTextureSprite  = "GFX_sort_button_202x29_3_frames"
+			position = { x = 118 y = 134 }
+			frame = 2
+			orientation = UPPER_LEFT
+			clicksound = click_checkbox
+			oversound = ui_menu_over
+			shortcut = "ctrl+f"
+		}
+
+		buttonType = {
+			name = "st_state_marker_blocked"
+			quadTextureSprite  = "GFX_sort_button_202x29_3_frames"
+			position = { x = 118 y = 134 }
+			frame = 3
+			orientation = UPPER_LEFT
+			clicksound = click_close
+			oversound = ui_menu_over
+			shortcut = "ctrl+f"
+		}
+
+		instantTextBoxType = {
+			name = "state_marker_title"
+			text = "[THIS.GetName]"
+			font = "hoi_18mbs"
+			position = { x = 118 y = 137 }
+			orientation = UPPER_LEFT
+			format = center
+		}
+
+		buttonType = {
+			name = "st_transfer_button_cant"
+			quadTextureSprite = GFX_checkbox_small_green
+			frame = 1
+			position = { x = -40 y = 166 }
+			clicksound = click_close
+			oversound = ui_menu_over
+			orientation = UPPER_RIGHT
+		}
+		buttonType = {
+			name = "st_transfer_button"
+			quadTextureSprite = GFX_checkbox_small_green
+			frame = 2
+			position = { x = -40 y = 166 }
+			clicksound = click_ok
+			oversound = ui_menu_over
+			orientation = UPPER_RIGHT
+			pdx_tooltip = "ST_TRANSFER_BUTTON_TT"
+		}
+
+		buttonType = {
+			name = "st_target_marker"
+			quadTextureSprite = "GFX_sort_button_100x29_3_frames"
+			text = ""
+			font = "hoi_18mbs"
+			frame = 1
+			orientation = UPPER_LEFT
+			position = { x = 14 y = 134 }
+			clicksound = click_checkbox
+			oversound = ui_menu_over
+			shortcut = "ctrl+t"
+		}
+
+		buttonType = {
+			name = "st_target_unmarker"
+			quadTextureSprite = "GFX_sort_button_100x29_3_frames"
+			text = ""
+			font = "hoi_18mbs"
+			frame = 2
+			orientation = UPPER_LEFT
+			position = { x = 14 y = 134 }
+			clicksound = click_checkbox
+			oversound = ui_menu_over
+			shortcut = "ctrl+t"
+		}
+
+		buttonType = {
+			name = "st_target_marker_blocked"
+			quadTextureSprite = "GFX_sort_button_100x29_3_frames"
+			text = ""
+			font = "hoi_18mbs"
+			frame = 3
+			orientation = UPPER_LEFT
+			position = { x = 14 y = 134 }
+			clicksound = click_close
+			oversound = ui_menu_over
+			shortcut = "ctrl+t"
+		}
+
+		instantTextBoxType = {
+			name = "st_target_title"
+			text = "Target"
+			position = { x = -37 y = 137 }
+			font = "hoi_18mbs"
+			orientation = UPPER_LEFT
+			format = center
+			alwaystransparent = yes
+		}
+
+		buttonType = {
+			name = "st_close_button"
+			spriteType = GFX_closebutton
+			orientation = UPPER_RIGHT
+			position = { x = -40 y = 10 }
+			clicksound = click_close
+			oversound = ui_menu_over
+		}
+
+		containerWindowType = {
+			name = "st_target_identifier"
+			position = { x = 15 y = 166 }
+			orientation = UPPER_LEFT
+			#margin = { left = 10 right = 10 }
+			size = { width = 270 height = 30 }
+
+			background = {
+				name = "st_target_bg"
+				quadTextureSprite = GFX_tiled_window_small_small
+			}
+
+			instantTextBoxType = {
+				name = "st_target_bg_title"
+				position = { x = 0 y = 4 }
+				maxWidth = 270
+				text = "[ST_TRANSFER_TARGET]"
+				font = "hoi_18mbs"
+				format = center
+				orientation = UPPER_LEFT
+				alwaystransparent = yes
+				maxHeight = 30
+			}
+		}
+
+		buttonType = {
+			name = "st_core_swap"
+			position = { x = -40 y = 100 }
+			orientation = UPPER_RIGHT
+			quadTextureSprite = GFX_checkbox_core_swap
+			frame = 1
+			clicksound = click_checkbox
+			oversound = ui_menu_over
+			pdx_tooltip = "PM_ST_CORE_TOOLTIP"
+			pdx_tooltip_delayed = "PM_ST_CORE_TOOLTIP_DELAY"
+		}
+
+		buttonType = {
+			name = "st_core_swapped"
+			position = { x = -40 y = 100 }
+			orientation = UPPER_RIGHT
+			quadTextureSprite = GFX_checkbox_core_swap
+			frame = 2
+			clicksound = click_checkbox
+			oversound = ui_menu_over
+			pdx_tooltip = "PM_ST_CORE_TOOLTIP"
+			pdx_tooltip_delayed = "PM_ST_CORE_TOOLTIP_DELAY"
+		}
+
+		containerWindowType = {
+			name = "st_state_gridbox_container"
+			orientation = UPPER_LEFT
+			origo = upper_left
+			size = { width = 330 height = 200 }
+			position = { x = 0 y = 200 }
+			verticalScrollbar = "right_vertical_slider"
+			autohide_scrollbars = no
+			scroll_wheel_factor = 20
+			smooth_scrolling = yes
+			margin = { top = 12 left = 12 right = 24 bottom = 12 }
+
+			background = {
+				name = "Background"
+				quadTextureSprite = "GFX_tiled_window_1_scrollbar"
+			}
+			
+			gridBoxType = {
+				name = "st_state_gridbox"
+				max_slots_horizontal = 1
+				format = UPPER_LEFT
+				orientation = UPPER_LEFT
+				position = { x = 0 y = 0 }
+				size = { width = 100%% height = 100%% }
+				slotsize = { width = 330 height = 16 }
+			}
+		}
+	}
+
+	containerWindowType = {
+		name = "st_state_entry"
+		size = {
+			width = 330
+			height = 16
+		}
+		orientation = UPPER_LEFT
+		origo = upper_left
+		instantTextBoxType = {
+			name = "title"
+			font = "hoi_18mbs"
+			text = "[ST_STATE_ENTRY_TEXT]"
+			maxWidth = 298
+			maxHeight = 16
+			#vertical_alignment = center
+			format = left
+			#position = { x = 14 y = 12 }
+		}
+	}
+}

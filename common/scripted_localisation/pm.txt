@@ -1,0 +1,44 @@
+defined_text = {
+	name = PT_STATE_MARK_UNMARK
+	text = {
+		trigger = {
+			FROM.FROM = {
+				has_variable = pt_mark_status
+			}
+		}
+		localization_key = STATE_MARKED
+	}
+	text = {
+		localization_key = STATE_UNMARKED
+	}
+}
+
+defined_text = {
+	name = ST_TRANSFER_TARGET
+	text = {
+		trigger = {
+			ROOT = {
+				has_variable = st_target_var
+			}
+		}
+		localization_key = TARGET_SELECTED
+	}
+	text = {
+		localization_key = NO_TARGET_SELECTED
+	}
+}
+
+defined_test = {
+	name = ST_STATE_ENTRY_TEXT
+	text = {
+		trigger = {
+			owner = {
+				tag = ROOT
+			}
+		}
+		localization_key = ST_STATE_ENTRY_OWNED
+	}
+	text = {
+		localization_key = ST_STATE_ENTRY_PUPPET
+	}
+}

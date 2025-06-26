@@ -1,0 +1,139 @@
+# Puppet Mania - Puppet Tool
+
+scripted_gui = {
+	pt_button = {
+		window_name = "pt_button_container"
+		parent_window_token = top_bar
+
+		context_type = player_context
+
+		visible = {
+			ROOT = {
+				is_ai = no
+				is_subject = no
+			}
+		}
+
+		effects = {
+			pt_button_open_close_click = {
+				ROOT = {
+					if = {
+						limit = {
+							has_variable = show_pm_pt
+						}
+						clear_variable = show_pm_pt
+					}
+					else = {
+						set_variable = { show_pm_pt = 1 }
+					}
+				}
+				every_state = {
+					limit = {
+						owner = {
+							OR = {
+								tag = ROOT
+								is_subject_of = ROOT
+							}
+						}
+						is_fully_controlled_by = owner
+						has_variable = pt_mark_status
+					}
+					clear_variable = pt_mark_status
+				}
+			}
+
+			pt_button_open_click = {
+				set_variable = { show_pm_pt = 1 }
+			}
+			pt_button_close_click = {
+				clear_variable = show_pm_pt
+				#clear_variable = st_target_var
+				every_state = {
+					limit = {
+						ROOT = {
+							is_in_array = {
+								array = pt_transfer_states_ar
+								value = PREV.id
+							}
+						}
+					}
+					ROOT = {
+						remove_from_array = {
+							array = pt_transfer_states_ar
+							value = PREV.id	
+						}
+					}
+				}
+			}
+		}
+
+		triggers = {
+			pt_button_open_visible = {
+				NOT = {
+					has_variable = show_pm_st
+				}
+			}
+			pt_button_close_visible = {
+				has_variable = show_pm_st
+			}
+			puppet_off_visible = {
+				NOT = {
+					has_variable = show_pm_st
+				}
+			}
+			puppet_on_visible = {
+				has_variable = show_pm_st
+			}
+		}
+	}
+
+	pt_logic = {
+		context_type = selected_state_context
+
+		window_name = "pt_main_container"
+
+		visible = {
+			ROOT = {
+				is_ai = no
+				has_variable = show_pm_pt
+			}
+			FROM.FROM = {
+				owner = {
+					OR = {
+						tag = ROOT
+						is_subject_of = ROOT
+					}
+				}
+				is_fully_controlled_by = owner
+			}
+		}
+
+		effects = {
+			pt_state_marker_click = {
+				FROM.FROM = {
+					set_variable = { pt_mark_status = 1 }
+				}
+			}
+			pt_state_unmarker_click = {
+				FROM.FROM = {
+					clear_variable = pt_mark_status
+				}
+			}
+		}
+
+		triggers = {
+			pt_state_marker_visible = {
+				FROM.FROM = {
+					NOT = {
+						has_variable = pt_mark_status
+					}
+				}
+			}
+			pt_state_unmarker_visible = {
+				FROM.FROM = {
+					has_variable = pt_mark_status
+				}
+			}
+		}
+	}
+}

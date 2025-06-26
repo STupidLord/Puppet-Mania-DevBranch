@@ -1,0 +1,99 @@
+guiTypes = {
+	containerWindowType = {
+		name = "pt_button_container"
+		position = { x = -500 y = 5 }
+		orientation = UPPER_RIGHT
+
+		buttonType = {
+			name = "pt_button_open"
+			spriteType = "GFX_generic_box_80"
+			position = { x = 0 y = 0 }
+			pdx_tooltip = "PM_PT_PDX_TOOLTIP"
+			pdx_tooltip_delayed = "PM_PT_PDX_TOOLTIP_DELAY"
+			clicksound = click_expand
+			oversound = ui_menu_over
+		}
+
+		buttonType = {
+			name = "pt_button_close"
+			spriteType = "GFX_generic_box_80"
+			position = { x = 0 y = 0 }
+			pdx_tooltip = "PM_ST_PDX_TOOLTIP"
+			pdx_tooltip_delayed = "PM_ST_PDX_TOOLTIP_DELAY"
+			clicksound = click_close
+			oversound = ui_menu_over
+		}
+
+		instantTextBoxType = {
+			name = "title"
+			text = "Puppet"
+			font = "hoi_18mbs"
+			position = { x = 16 y = 3 }
+			format = left
+			orientation = CENTER_DOWN
+			alwaystransparent = yes
+		}
+
+		iconType = {
+			name = "puppet_on"
+			frame = 2
+			quadTextureSprite = GFX_generic_checkbox
+			position = { x = 80 y = -3 }
+		}
+		iconType = {
+			name = "puppet_off"
+			frame = 1
+			position = { x = 80 y = -3 }
+			quadTextureSprite = GFX_generic_checkbox
+		}
+	}
+
+	containerWindowType = {
+		name = "pt_main_container"
+		size = { width = 300 height = 200 }
+		position = { x = 0 y = 0 }
+		orientation = CENTER
+		origo = center
+
+		moveable = yes
+
+		background = {
+			name = "Background"
+			quadTextureSprite = "GFX_tiled_plain_bg"
+		}
+
+		instantTextBoxType = {
+			name = "title"
+			text = "Puppet Tool"
+			font = "hoi_24header"
+			#position = { x = -20%% y = -3%% }
+			position = { x = -60%% y = -84%% }
+			orientation = CENTER
+		}
+
+		buttonType = {
+			name = "pt_state_marker"
+			quadTextureSprite  = "GFX_checkbox_button_149"
+			position = { x = -70%% y = 0%% }
+			frame = 1
+			orientation = CENTER
+		}
+
+		buttonType = {
+			name = "pt_state_unmarker"
+			quadTextureSprite  = "GFX_checkbox_button_149"
+			position = { x = -70%% y = 0%% }
+			frame = 2
+			orientation = CENTER
+		}
+
+		instantTextBoxType = {
+			name = "state_marker_title"
+			text = "[this.PT_STATE_MARK_UNMARK]"
+			font = "hoi_18mbs"
+			position = { x = -112%% y = 8%% }
+			orientation = CENTER
+			format = center
+		}
+	}
+}

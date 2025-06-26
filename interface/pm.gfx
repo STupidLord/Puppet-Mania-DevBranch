@@ -1,0 +1,12 @@
+spriteTypes = {
+	spriteType = {
+		name = GFX_checkbox_core_swap
+		textureFile = "gfx/interface/checkbox_core_swap.png"
+		noOfFrames = 2
+	}
+	spriteType = {
+		name = GFX_sort_button_100x29_3_frames
+		texturefile = "gfx/interface/sort_button_100x29_3_frames.png"
+		noOfFrames = 3
+	}
+}
