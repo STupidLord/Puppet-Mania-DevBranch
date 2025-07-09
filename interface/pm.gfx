@@ -9,4 +9,14 @@ spriteTypes = {
 		texturefile = "gfx/interface/sort_button_100x29_3_frames.png"
 		noOfFrames = 3
 	}
+	spriteType = {
+		name = GFX_sort_up_down_button_31x31_3_frames
+		texturefile = "gfx/interface/sort_up_down_button_31x31_3_frames.png"
+		noOfFrames = 3
+	}
+	spriteType = {
+		name = GFX_checkbox_small_green_31x31_3_frames
+		texturefile = "gfx/interface/checkbox_small_green_31x31_3_frames.png"
+		noOfFrames = 3
+	}
 }

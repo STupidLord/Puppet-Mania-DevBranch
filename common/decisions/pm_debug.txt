@@ -1,0 +1,13 @@
+debug_decisions = {
+	pm_debug_subject = {
+		visible = {
+			is_subject = yes
+		}
+
+		complete_effect = {
+			add_autonomy_ratio = {
+				value = 1
+			}
+		}
+	}
+}

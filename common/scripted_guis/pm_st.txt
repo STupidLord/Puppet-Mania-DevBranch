@@ -97,7 +97,6 @@ scripted_gui = {
 							array = st_transfer_states_ar
 							value = PREV.id
 						}
-						log = "Core swapping is: [?st_core_swapping]"
 					}
 				}
 			}
@@ -167,13 +166,6 @@ scripted_gui = {
 				}
 				every_state = {
 					limit = {
-						owner = {
-							OR = {
-								tag = ROOT
-								is_subject_of = ROOT
-							}
-						}
-						is_fully_controlled_by = owner
 						ROOT = {
 							is_in_array = {
 								array = st_transfer_states_ar

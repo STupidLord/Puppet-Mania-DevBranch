@@ -28,6 +28,21 @@ defined_text = {
 	}
 }
 
+defined_text = {
+	name = PT_TRANSFER_TARGET
+	text = {
+		trigger = {
+			ROOT = {
+				has_variable = pt_puppet_target
+			}
+		}
+		localization_key = PT_TARGET_SELECTED
+	}
+	text = {
+		localization_key = NO_TARGET_SELECTED
+	}
+}
+
 defined_test = {
 	name = ST_STATE_ENTRY_TEXT
 	text = {
@@ -40,5 +55,143 @@ defined_test = {
 	}
 	text = {
 		localization_key = ST_STATE_ENTRY_PUPPET
+	}
+}
+
+defined_text = {
+	name = PT_COUNTRY_ENTRY_SL
+	text = {
+		trigger = {
+			var:core_country = {
+				tag = ROOT
+			}
+		}
+		localization_key = pt_root_country_entry
+	}
+	text = {
+		localization_key = pt_country_entry
+	}
+}
+
+defined_text = {
+	name = ST_TRANSFER_BUTTON_BLOCKED_SL
+	text = {
+		trigger = {
+			ROOT = {
+				has_variable = st_target_var
+				var:st_target_var = {
+					has_war_with = PREV
+				}
+			}
+		}
+		localization_key = ST_TRANSFER_BUTTON_BLOCKED_W_TT
+	}
+	text = {
+		trigger = {
+			ROOT = {
+				NOT = { has_variable = st_target_var }
+				OR = {
+					any_owned_state = {
+						is_fully_controlled_by = owner	
+						ROOT = {
+							is_in_array = {
+								array = st_transfer_states_ar
+								value = PREV.id
+							}
+						}
+					}
+					any_country = {
+						any_owned_state = {
+							is_fully_controlled_by = owner
+							ROOT = {
+								is_in_array = {
+									array = st_transfer_states_ar
+									value = PREV.id
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		localization_key = ST_TRANSFER_BUTTON_BLOCKED_T_TT
+	}
+	text = {
+		trigger = {
+			ROOT = {
+				NOT = {
+					OR = {
+						any_owned_state = {
+							is_fully_controlled_by = owner	
+							ROOT = {
+								is_in_array = {
+									array = st_transfer_states_ar
+									value = PREV.id
+								}
+							}
+						}
+						any_country = {
+							any_owned_state = {
+								is_fully_controlled_by = owner
+								ROOT = {
+									is_in_array = {
+										array = st_transfer_states_ar
+										value = PREV.id
+									}
+								}
+							}
+						}
+					}
+				}
+				has_variable = st_target_var
+			}
+		}
+		localization_key = ST_TRANSFER_BUTTON_BLOCKED_S_TT
+	}
+	text = {
+		localization_key = ST_TRANSFER_BUTTON_BLOCKED_TT
+	}
+}
+
+defined_text = {
+	name = PT_TRANSFER_BUTTON_BLOCKED_SL
+	text = {
+		trigger = {
+			ROOT = {
+				NOT = { has_variable = pt_puppet_target }
+				any_owned_state = {
+					is_fully_controlled_by = owner	
+					ROOT = {
+						is_in_array = {
+							array = pt_transfer_states_ar
+							value = PREV.id
+						}
+					}
+				}
+			}
+		}
+		localization_key = PT_TRANSFER_BUTTON_BLOCKED_T_TT
+	}
+	text = {
+		trigger = {
+			ROOT = {
+				NOT = {
+					any_owned_state = {
+						is_fully_controlled_by = owner	
+						ROOT = {
+							is_in_array = {
+								array = pt_transfer_states_ar
+								value = PREV.id
+							}
+						}
+					}
+				}
+				has_variable = pt_puppet_target
+			}
+		}
+		localization_key = PT_TRANSFER_BUTTON_BLOCKED_S_TT
+	}
+	text = {
+		localization_key = PT_TRANSFER_BUTTON_BLOCKED_TT
 	}
 }

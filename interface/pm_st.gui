@@ -94,15 +94,12 @@ guiTypes = {
 			shortcut = "ctrl+f"
 		}
 
-		buttonType = {
+		iconType = {
 			name = "st_state_marker_blocked"
 			quadTextureSprite  = "GFX_sort_button_202x29_3_frames"
 			position = { x = 118 y = 134 }
 			frame = 3
 			orientation = UPPER_LEFT
-			clicksound = click_close
-			oversound = ui_menu_over
-			shortcut = "ctrl+f"
 		}
 
 		instantTextBoxType = {
@@ -114,18 +111,17 @@ guiTypes = {
 			format = center
 		}
 
-		buttonType = {
+		iconType = {
 			name = "st_transfer_button_cant"
-			quadTextureSprite = GFX_checkbox_small_green
-			frame = 1
+			quadTextureSprite = GFX_checkbox_small_green_31x31_3_frames
+			frame = 3
 			position = { x = -40 y = 166 }
-			clicksound = click_close
-			oversound = ui_menu_over
 			orientation = UPPER_RIGHT
+			pdx_tooltip = "ST_TRANSFER_BUTTON_BLOCKED_TT_SL"
 		}
 		buttonType = {
 			name = "st_transfer_button"
-			quadTextureSprite = GFX_checkbox_small_green
+			quadTextureSprite = GFX_checkbox_small_green_31x31_3_frames
 			frame = 2
 			position = { x = -40 y = 166 }
 			clicksound = click_ok
@@ -160,17 +156,12 @@ guiTypes = {
 			shortcut = "ctrl+t"
 		}
 
-		buttonType = {
+		iconType = {
 			name = "st_target_marker_blocked"
 			quadTextureSprite = "GFX_sort_button_100x29_3_frames"
-			text = ""
-			font = "hoi_18mbs"
 			frame = 3
 			orientation = UPPER_LEFT
 			position = { x = 14 y = 134 }
-			clicksound = click_close
-			oversound = ui_menu_over
-			shortcut = "ctrl+t"
 		}
 
 		instantTextBoxType = {

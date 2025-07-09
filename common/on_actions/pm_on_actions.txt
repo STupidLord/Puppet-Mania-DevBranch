@@ -17,6 +17,84 @@ on_actions = {
 					}
 				}
 			}
+			if = {
+				limit = {
+					FROM = {
+						is_in_array = {
+							array = pt_transfer_states_ar
+							value = FROM.FROM.id
+						}
+					}
+				}
+				FROM = {
+					remove_from_array = {
+						array = pt_transfer_states_ar
+						value = FROM.FROM.id
+					}
+				}
+			}
+		}
+	}
+
+	on_subject_free = {
+		effect = {
+			if = {
+				limit = {
+					is_dynamic_country = yes
+				}
+				drop_cosmetic_tag = yes
+				
+				if = {
+					limit = {
+						any_other_country = {
+							original_tag = ROOT
+							has_government = ROOT
+							is_dynamic_country = no
+						}
+					}
+					random_country_with_original_tag = {
+						original_tag_to_check = ROOT
+						limit = {
+							has_government = ROOT
+						}
+						country_event = {
+							id = occupied_countries.1
+							hours = 24
+							random_hours = 12
+						}
+					}
+				}
+				else_if = {
+					limit = {
+						NOT = {
+							any_other_country = {
+								original_tag = ROOT
+								is_dynamic_country = no
+							}
+						}
+					}
+					every_possible_country = {
+						limit = {
+							original_tag = ROOT
+							is_dynamic_country = no
+							exists = no
+						}
+						ROOT = {
+							random_owned_controlled_state = {
+								limit = {
+									is_core_of = PREV
+								}
+								transfer_state_to = PREV
+							}
+						}
+						change_tag_from = ROOT
+						annex_country = {
+							target = ROOT
+							transfer_troops = yes
+						}
+					}
+				}
+			}
 		}
 	}
 }
