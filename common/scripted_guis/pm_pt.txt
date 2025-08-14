@@ -322,6 +322,36 @@ scripted_gui = {
 							}
 						}
 					}
+					has_capitulated = no
+					if = {
+						limit = {
+							has_game_rule = {
+								rule = pm_pt_puppet_during_war_status
+								option = pm_pt_no_puppet_during_war
+							}
+						}
+						has_war = no
+					}
+					else_if = {
+						limit = {
+							has_war = yes
+							has_game_rule = {
+								rule = pm_pt_puppet_during_war_status
+								option = pm_pt_puppet_during_war_low_cap
+							}
+						}
+						surrender_progress < 0.25
+					}
+					else_if = {
+						limit = {
+							has_war = yes
+							has_game_rule = {
+								rule = pm_pt_puppet_during_war_status
+								option = pm_pt_puppet_during_war_low_cap
+							}
+						}
+						surrender_progress < 0.01
+					}
 				}
 			}
 			pt_transfer_button_cant_visible = {
@@ -338,6 +368,36 @@ scripted_gui = {
 									}
 								}
 							}
+						}
+						has_capitulated = yes
+						if = {
+							limit = {
+								has_game_rule = {
+									rule = pm_pt_puppet_during_war_status
+									option = pm_pt_no_puppet_during_war
+								}
+							}
+							has_war = yes
+						}
+						else_if = {
+							limit = {
+								has_war = yes
+								has_game_rule = {
+									rule = pm_pt_puppet_during_war_status
+									option = pm_pt_puppet_during_war_low_cap
+								}
+							}
+							surrender_progress > 0.24
+						}
+						else_if = {
+							limit = {
+								has_war = yes
+								has_game_rule = {
+									rule = pm_pt_puppet_during_war_status
+									option = pm_pt_puppet_during_war_low_cap
+								}
+							}
+							surrender_progress > 0
 						}
 					}
 				}
