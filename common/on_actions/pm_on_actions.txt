@@ -36,6 +36,57 @@ on_actions = {
 		}
 	}
 
+	on_daily = { # I know on_daily isn't the best on performance, but it's the most ideal for my goal
+		effect = {
+			if = {
+				limit = {
+					has_game_rule = {
+						rule = pm_pt_coloring_status
+						option = pm_pt_yes_coloring
+					}
+				}
+				every_subject_country = {
+					limit = {
+						NOT = { has_variable = pm_pt_color_var }
+						OR = {
+							is_subject_of = ENG
+							is_subject_of = GER
+							is_subject_of = SOV
+							is_subject_of = AUS
+							is_subject_of = USA
+							is_subject_of = JAP
+							is_subject_of = FRA
+							is_subject_of = POL
+							is_subject_of = HUN
+							is_subject_of = ITA
+							is_subject_of = AST
+							is_subject_of = SPR
+							is_subject_of = ROM
+							is_subject_of = CHI
+							is_subject_of = PRC
+						}
+					}
+					if = {
+						limit = {
+							OVERLORD = {
+								original_tag = SOV
+								NOT = { has_government = communism }
+							}
+						}
+						set_cosmetic_tag = RUS_PUPPET
+					}
+					else = {
+						meta_effect = {
+							text = { set_cosmetic_tag = [TAG]_PUPPET }
+							TAG = "[OVERLORD.GetTag]"
+						}
+					}
+					set_variable = { pm_pt_color_var = 1 }
+				}
+			}
+		}
+	}
+
 	on_subject_free = {
 		effect = {
 			if = {
@@ -94,6 +145,46 @@ on_actions = {
 						}
 					}
 				}
+			}
+			if = {
+				limit = {
+					has_variable = pm_pt_color_var
+				}
+				drop_cosmetic_tag = yes
+				clear_variable = pm_pt_color_var
+			}
+		}
+	}
+	on_subject_annexed = {
+		effect = {
+			if = {
+				limit = {
+					has_variable = pm_pt_color_var
+				}
+				drop_cosmetic_tag = yes
+				clear_variable = pm_pt_color_var
+			}
+		}
+	}
+	on_release_as_free = {
+		effect = {
+			if = {
+				limit = {
+					has_variable = pm_pt_color_var
+				}
+				drop_cosmetic_tag = yes
+				clear_variable = pm_pt_color_var
+			}
+		}
+	}
+	on_puppet = {
+		effect = {
+			if = {
+				limit = {
+					has_variable = pm_pt_color_var
+				}
+				drop_cosmetic_tag = yes
+				clear_variable = pm_pt_color_var
 			}
 		}
 	}

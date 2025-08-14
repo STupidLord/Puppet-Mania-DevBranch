@@ -29,3 +29,10 @@
  PT_TRANSFER_BUTTON_BLOCKED_S_TT: "We can not create a puppet state of §H[?ROOT.pt_puppet_target.GetNameDef]§! because we do not have any §Hstates targeted§!."
  PT_TRANSFER_BUTTON_BLOCKED_T_TT: "We can not create a puppet because we do not have a §Hpuppet target§!."
  PT_TARGET_SELECTED: "[?ROOT.pt_puppet_target.GetNameDefCap]"
+
+ PM_PT_COLORING_STATUS_NAME: "Overlord Puppet Coloring"
+ PM_PT_COLORING_STATUS_DESC: "Automatically color puppets similar to that of their overlord. Only applies for certain overlords, mainly the majors."
+ PM_PT_NO_COLORING_NAME: "No Puppet Coloring"
+ PM_PT_NO_COLORING_DESC: "Coloring disabled."
+ PM_PT_YES_COLORING_NAME: "Puppet Coloring"
+ PM_PT_YES_COLORING_DESC: "Coloring enabled."

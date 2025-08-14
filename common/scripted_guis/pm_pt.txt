@@ -127,104 +127,134 @@ scripted_gui = {
 				}
 			}
 			pt_transfer_button_click = {
-				ROOT = {
-					create_dynamic_country = {
-						original_tag = pt_puppet_target
-						every_state = {
-							limit = {
-								is_fully_controlled_by = owner
-								is_owned_by = ROOT
+				if = {
+					limit = { var:pt_puppet_target = { exists = yes } }
+					ROOT = {
+						create_dynamic_country = {
+							original_tag = pt_puppet_target
+							every_state = {
+								limit = {
+									is_fully_controlled_by = owner
+									is_owned_by = ROOT
+									ROOT = {
+										is_in_array = {
+											array = pt_transfer_states_ar
+											value = PREV.id
+										}
+									}
+								}
+								transfer_state_to = PREV
 								ROOT = {
-									is_in_array = {
+									remove_from_array = {
 										array = pt_transfer_states_ar
 										value = PREV.id
 									}
 								}
 							}
-							transfer_state_to = PREV
 							ROOT = {
-								remove_from_array = {
-									array = pt_transfer_states_ar
-									value = PREV.id
-								}
-							}
-						}
-						ROOT = {
-							# Puppeting
-							if = {
-								limit = {
-									OR = {
-										AND = {
-											tag = JAP
-											has_government = fascism
-										}
-										AND = {
-											tag = MAN
-											OR = {
+								# Puppeting
+								if = {
+									limit = {
+										OR = {
+											AND = {
+												tag = JAP
 												has_government = fascism
-												has_government = neutrality
+											}
+											AND = {
+												tag = MAN
+												OR = {
+													has_government = fascism
+													has_government = neutrality
+												}
 											}
 										}
 									}
+									set_autonomy = {
+										target = PREV
+										autonomy_state = autonomy_wtt_imperial_subject
+									}
 								}
-								set_autonomy = {
-									target = PREV
-									autonomy_state = autonomy_wtt_imperial_subject
+								else_if = {
+									limit = {
+										has_government = fascism
+										NOT = { tag = JAP }
+									}
+									set_autonomy = {
+										target = PREV
+										autonomy_state = autonomy_reichsprotectorate
+									}
+								}
+								else = {
+									set_autonomy = {
+										target = PREV
+										autonomy_state = autonomy_puppet
+									}
 								}
 							}
-							else_if = {
+						}
+					}
+				}
+				else = {
+					ROOT = {
+						var:pt_puppet_target = {
+							every_state = {
 								limit = {
-									has_government = fascism
-									NOT = { tag = JAP }
+									is_fully_controlled_by = owner
+									is_owned_by = ROOT
+									ROOT = {
+										is_in_array = {
+											array = pt_transfer_states_ar
+											value = PREV.id
+										}
+									}
 								}
-								set_autonomy = {
-									target = PREV
-									autonomy_state = autonomy_reichsprotectorate
+								transfer_state_to = PREV
+								ROOT = {
+									remove_from_array = {
+										array = pt_transfer_states_ar
+										value = PREV.id
+									}
 								}
 							}
-							else = {
-								set_autonomy = {
-									target = PREV
-									autonomy_state = autonomy_puppet
+							ROOT = {
+								# Puppeting
+								if = {
+									limit = {
+										OR = {
+											AND = {
+												original_tag = JAP
+												has_government = fascism
+											}
+											AND = {
+												original_tag = MAN
+												OR = {
+													has_government = fascism
+													has_government = neutrality
+												}
+											}
+										}
+									}
+									set_autonomy = {
+										target = PREV
+										autonomy_state = autonomy_wtt_imperial_subject
+									}
 								}
-							}
-
-							# Overlord color
-							if = {
-								limit = {
-									tag = ENG
+								else_if = {
+									limit = {
+										has_government = fascism
+										NOT = { original_tag = JAP original_tag = MAN }
+									}
+									set_autonomy = {
+										target = PREV
+										autonomy_state = autonomy_reichsprotectorate
+									}
 								}
-								PREV = { set_cosmetic_tag = ENG_PUPPET }
-							}
-							else_if = {
-								limit = {
-									tag = GER
+								else = {
+									set_autonomy = {
+										target = PREV
+										autonomy_state = autonomy_puppet
+									}
 								}
-								PREV = { set_cosmetic_tag = GER_PUPPET }
-							}
-							else_if = {
-								limit = {
-									tag = SOV
-								}
-								PREV = { set_cosmetic_tag = SOV_PUPPET }
-							}
-							else_if = {
-								limit = {
-									tag = AUS
-								}
-								PREV = { set_cosmetic_tag = AUS_PUPPET }
-							}
-							else_if = {
-								limit = {
-									tag = JAP
-								}
-								PREV = { set_cosmetic_tag = JAP_PUPPET }
-							}
-							else_if = {
-								limit = {
-									tag = USA
-								}
-								PREV = { set_cosmetic_tag = USA_PUPPET }
 							}
 						}
 					}
