@@ -23,12 +23,12 @@
 
 pm_pt_coloring_status = {
 	name = PM_PT_COLORING_STATUS_NAME
-	desc = PM_PT_COLORING_STATUS_DESC
 	group = RULE_GROUP_PM_SETUP
 	option = {
 		name = pm_pt_no_coloring
 		text = PM_PT_NO_COLORING_NAME
 		desc = PM_PT_NO_COLORING_DESC
+		allow_achievements = yes
 	}
 	default = {
 		name = pm_pt_yes_coloring
@@ -39,12 +39,12 @@ pm_pt_coloring_status = {
 
 pm_pt_puppet_during_war_status = {
 	name = PM_PT_PUPPET_DURING_WAR_STATUS_NAME
-	desc = PM_PT_PUPPET_DURING_WAR_STATUS_DESC
 	group = RULE_GROUP_PM_SETUP
 	option = {
 		name = pm_pt_no_puppet_during_war
 		text = PM_PT_NO_PUPPET_DURING_WAR_NAME
 		desc = PM_PT_NO_PUPPET_DURING_WAR_DESC
+		allow_achievements = yes
 	}
 	default = {
 		name = pm_pt_puppet_during_war_no_cap
