@@ -42,6 +42,53 @@ on_actions = {
 				limit = {
 					has_game_rule = {
 						rule = pm_pt_coloring_status
+						option = pm_pt_dyn_yes_coloring
+					}
+				}
+				every_subject_country = {
+					limit = {
+						NOT = { has_variable = pm_pt_color_var }	
+						is_dynamic_country = yes
+						OR = {
+							is_subject_of = ENG
+							is_subject_of = GER
+							is_subject_of = SOV
+							is_subject_of = AUS
+							is_subject_of = USA
+							is_subject_of = JAP
+							is_subject_of = FRA
+							is_subject_of = POL
+							is_subject_of = HUN
+							is_subject_of = ITA
+							is_subject_of = AST
+							is_subject_of = SPR
+							is_subject_of = ROM
+							is_subject_of = CHI
+							is_subject_of = PRC
+						}
+					}
+					if = {
+						limit = {
+							OVERLORD = {
+								original_tag = SOV
+								NOT = { has_government = communism }
+							}
+						}
+						set_cosmetic_tag = RUS_PUPPET
+					}
+					else = {
+						meta_effect = {
+							text = { set_cosmetic_tag = [OVERLORD_TAG]_PUPPET }
+							OVERLORD_TAG = "[THIS.OVERLORD.GetTag]" # Needs to be "THIS.OVERLORD" and not just "OVERLORD" apparently?
+						}
+					}
+					set_variable = { pm_pt_color_var = 1 }
+				}
+			}
+			else_if = {
+				limit = {
+					has_game_rule = {
+						rule = pm_pt_coloring_status
 						option = pm_pt_yes_coloring
 					}
 				}
@@ -77,8 +124,8 @@ on_actions = {
 					}
 					else = {
 						meta_effect = {
-							text = { set_cosmetic_tag = [TAG]_PUPPET }
-							TAG = "[OVERLORD.GetTag]"
+							text = { set_cosmetic_tag = [OVERLORD_TAG]_PUPPET }
+							OVERLORD_TAG = "[THIS.OVERLORD.GetTag]" # Needs to be "THIS.OVERLORD" and not just "OVERLORD" apparently?
 						}
 					}
 					set_variable = { pm_pt_color_var = 1 }
@@ -109,7 +156,7 @@ on_actions = {
 							has_government = ROOT
 						}
 						country_event = {
-							id = occupied_countries.1
+							id = pm_events.1
 							hours = 24
 							random_hours = 12
 						}
@@ -128,20 +175,36 @@ on_actions = {
 						limit = {
 							original_tag = ROOT
 							is_dynamic_country = no
-							exists = no
 						}
-						ROOT = {
-							random_owned_controlled_state = {
-								limit = {
-									is_core_of = PREV
-								}
-								transfer_state_to = PREV
+						random_core_state = {
+							limit = {
+								is_owned_and_controlled_by = ROOT
+								is_capital = no
 							}
+							transfer_state_to = PREV
+						}
+						set_politics = {
+							ruling_party = var:ROOT.current_party_ideology_group
+						}
+						set_political_party = {
+							ideology = var:ROOT.current_party_ideology_group
+							popularity = var:ROOT.party_popularity_100@ruling_party
 						}
 						change_tag_from = ROOT
+					}
+					random_country_with_original_tag = {
+						original_tag_to_check = ROOT
+						limit = {
+							is_dynamic_country = no
+						}
 						annex_country = {
 							target = ROOT
 							transfer_troops = yes
+						}
+					}
+					ROOT = {
+						every_core_state = {
+							remove_core_of = ROOT
 						}
 					}
 				}

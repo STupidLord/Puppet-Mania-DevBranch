@@ -18,8 +18,8 @@ guiTypes = {
 			name = "pt_button_close"
 			spriteType = "GFX_generic_box_80"
 			position = { x = 0 y = 0 }
-			pdx_tooltip = "PM_ST_PDX_TOOLTIP"
-			pdx_tooltip_delayed = "PM_ST_PDX_TOOLTIP_DELAY"
+			pdx_tooltip = "PM_PT_PDX_TOOLTIP"
+			pdx_tooltip_delayed = "PM_PT_PDX_TOOLTIP_DELAY"
 			clicksound = click_close
 			oversound = ui_menu_over
 		}

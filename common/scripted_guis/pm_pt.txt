@@ -127,9 +127,9 @@ scripted_gui = {
 				}
 			}
 			pt_transfer_button_click = {
-				if = {
-					limit = { var:pt_puppet_target = { exists = yes } }
-					ROOT = {
+				ROOT = {
+					if = {
+						limit = { var:pt_puppet_target = { exists = yes } }
 						create_dynamic_country = {
 							original_tag = pt_puppet_target
 							every_state = {
@@ -193,9 +193,7 @@ scripted_gui = {
 							}
 						}
 					}
-				}
-				else = {
-					ROOT = {
+					else = {
 						var:pt_puppet_target = {
 							every_state = {
 								limit = {

@@ -19,7 +19,7 @@
  ST_TRANSFER_BUTTON_BLOCKED_W_TT: "We can not transfer states to §H[?ROOT.st_target_var.GetNameDef]§! because we are §Rat war with them§!."
 
  PT_COUNTRY_ENTRY_TEXT: "[?core_country.GetNonIdeologyName]"
- PT_COUNTRY_ENTRY_SELECT_TT: "Target §L[?core_country.GetNonIdeologyName]§! for puppeting."
+ PT_COUNTRY_ENTRY_SELECT_TT: "Target §L[?core_country.GetName]§! for puppeting."
  PT_COUNTRY_ENTRY_BLOCKED_TT: "You can not puppet a country you already have a puppet of."
  PT_DROP_DOWN_LIST_TT: "Select a country from the selected states cores to release as a puppet."
  PT_DROP_DOWN_LIST_BLOCKED_TT: "No valid targets to puppet."
@@ -35,7 +35,9 @@
  PM_PT_NO_COLORING_NAME: "No Puppet Coloring"
  PM_PT_NO_COLORING_DESC: "Puppet coloring disabled."
  PM_PT_YES_COLORING_NAME: "Puppet Coloring"
- PM_PT_YES_COLORING_DESC: "Automatically color puppets similar to that of their overlord. Only applies for certain overlords, mainly the majors."
+ PM_PT_YES_COLORING_DESC: "Automatically color puppets similar to that of their overlord. Only applies for certain overlords, mainly the majors.\n\n(Note: certain countries under certain paths may have the wrong color)"
+ PM_PT_DYN_YES_COLORING_NAME: "Puppet Coloring for Dynamic Countries Only"
+ PM_PT_DYN_YES_COLORING_DESC: "Automatically color dynamic country puppets similar to that of their overlord. Only applies for certain overlords, mainly the majors.\n\n(Note: certain countries under certain paths may have the wrong color)"
  PM_PT_PUPPET_DURING_WAR_STATUS_NAME: "Puppeting During War"
  PM_PT_NO_PUPPET_DURING_WAR_NAME:"Blocked"
  PM_PT_NO_PUPPET_DURING_WAR_DESC:"Puppeting only allowed during peace time."
@@ -45,3 +47,7 @@
  PM_PT_PUPPET_DURING_WAR_LOW_CAP_DESC: "Puppeting allowed during war time when having less than 25% capitulation progress."
  PM_PT_PUPPET_DURING_WAR_NAME: "Allowed"
  PM_PT_PUPPET_DURING_WAR_DESC: "Puppeting allowed during war time."
+
+ pm_events.1.title: "Integration of [FROM.GetName]!"
+ pm_events.1.desc: "[FROM.GetName] has attained independence and want to join us!"
+ pm_events.1.a: "Welcome them with open arms!"

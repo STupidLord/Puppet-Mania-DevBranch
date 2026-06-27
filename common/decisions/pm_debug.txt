@@ -10,4 +10,15 @@ debug_decisions = {
 			}
 		}
 	}
+	
+	pm_debug_subject_color = {
+		visible = {
+			is_subject = yes
+		}
+
+		complete_effect = {
+			drop_cosmetic_tag = yes
+			clear_variable = pm_pt_color_var
+		}
+	}
 }

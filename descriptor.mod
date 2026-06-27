@@ -1,6 +1,7 @@
-version="0.0.1"
+name="Puppet Mania DevBranch"
+picture="thumbnail.png"
+version="1"
+supported_version="1.19.*"
 tags={
 	"Utilities"
 }
-name="Puppet Mania DevBranch"
-supported_version="1.19.*"
